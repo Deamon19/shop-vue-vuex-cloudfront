@@ -1,6 +1,14 @@
 # shop-vue-vuex-cloudfront
 
-See `develop` branch for development
+## S3 Bucket
+```
+http://my-vue-shop-24.s3-website.eu-west-3.amazonaws.com/
+```
+
+## Cloudfront
+```
+https://d3epp4v29vwjz2.cloudfront.net/
+```
 
 ## Project setup
 ```
@@ -32,5 +40,9 @@ npm run test:e2e
 npm run lint
 ```
 
+### Cloudfront build+deploy
+```
+npm run cloudfront:update:build:deploy:nc
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

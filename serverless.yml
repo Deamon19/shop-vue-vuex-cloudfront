@@ -1,10 +1,10 @@
-service: node-in-aws-web
+service: my-vue-shop-2
 
 frameworkVersion: '2'
 
 provider:
   name: aws
-  region: eu-west-1
+  region: eu-west-3
   runtime: nodejs12.x
   # setup profile for AWS CLI.
   # profile: node-aws
@@ -18,7 +18,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: my-vue-shop-24
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 
