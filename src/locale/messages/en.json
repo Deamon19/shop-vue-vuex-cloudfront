@@ -1,6 +1,6 @@
 {
     "app": {
-        "title": "My store!",
+        "title": "My vue store!",
         "loading": "Loading... Please wait"
     },
     "common": {
