@@ -112,7 +112,12 @@ export default Vue.extend({
 			this.isFetching = true;
 
 			try {
-				await productApi.saveProduct(values);
+				console.log(this.$route);
+				if (this.$route.params.productId) {
+					await productApi.saveProduct(values);
+				} else {
+					await productApi.createProduct(values);
+				}
 
 				this.$router.push('/admin/products');
 			} catch (e) {
