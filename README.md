@@ -9,7 +9,12 @@ http://my-vue-shop-24.s3-website.eu-west-3.amazonaws.com/
 ```
 https://d3epp4v29vwjz2.cloudfront.net/
 ```
-
+## Task 3 (API)
+```
+https://u7ctc7g8o0.execute-api.eu-west-3.amazonaws.com/dev/products (200)
+https://u7ctc7g8o0.execute-api.eu-west-3.amazonaws.com/dev/products/7567ec4b-b10c-48c5-9345-fc73c48a80aa (200)
+https://u7ctc7g8o0.execute-api.eu-west-3.amazonaws.com/dev/products/7567ec4b-b10c-0000-0000-000000000000 (404)
+```
 ## Project setup
 ```
 npm install
