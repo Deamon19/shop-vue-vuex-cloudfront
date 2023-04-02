@@ -93,7 +93,7 @@ export default Vue.extend({
 
 			try {
 				this.product = await productApi.fetchProductById(id);
-			} catch (e) {
+			} catch (e: any) {
 				this.showSnackbarWithMessage(e.message);
 			} finally {
 				this.isFetching = false;
@@ -120,7 +120,7 @@ export default Vue.extend({
 				}
 
 				this.$router.push('/admin/products');
-			} catch (e) {
+			} catch (e: any) {
 				this.showSnackbarWithMessage(e.message);
 			} finally {
 				this.isFetching = false;

@@ -50,8 +50,10 @@ import Vue from 'vue';
 import axios from 'axios';
 
 const fetchPresignedS3Url = (url: string, fileName: string) => {
+	const authToken = localStorage.getItem('authorization_token');
 	return axios({
 		method: 'GET',
+		headers: { Authorization: authToken ? `Basic ${authToken}` : '' },
 		url,
 		params: {
 			name: encodeURIComponent(fileName),
@@ -62,12 +64,13 @@ const fetchPresignedS3Url = (url: string, fileName: string) => {
 const uploadFileBy = async (url: string, file: File) => {
 	const destUrl = await fetchPresignedS3Url(url, file.name);
 
-	console.info('Uploading to: ', destUrl.data);
+	console.log('Uploading to: ', destUrl.data);
 
 	// save
-	const result = await fetch(destUrl.data, {
+	const result = await axios({
 		method: 'PUT',
-		body: file,
+		url: destUrl.data,
+		data: file,
 	});
 
 	console.info('Result: ', result);
@@ -115,12 +118,14 @@ export default Vue.extend({
 
 			try {
 				await uploadFileBy(this.url, this.file as File);
-			} catch (e) {
-				const msg = this.$t('errorMessage.cantUploadFile', {
-					reason: e.message,
-				});
-
-				this.showSnackbarMessage(msg.toString());
+			} catch (e: any) {
+				if (e.message.includes('401')) {
+					this.showSnackbarMessage('Unauthorized user');
+				} else if (e.message.includes('403')) {
+					this.showSnackbarMessage('Access denied');
+				} else {
+					this.showSnackbarMessage(e.message);
+				}
 			} finally {
 				this.resetFile();
 				this.hideUploadingStatus();
